@@ -15,7 +15,7 @@
 import Bus from '@/assets/eventBus'
 import router from '@/router'
 export default {
-  data: function() {
+  data() {
     return {
       menuList: [{
         name: 'commodity',
@@ -103,7 +103,7 @@ export default {
     }
   },
   methods: {
-    open: function(item, twig) {
+    open(item, twig) {
       if (twig) {
         router.push("/" + item.name + "/" + twig.name);
       } else {
@@ -149,7 +149,7 @@ export default {
 <style scoped>
 .menu {
   width: 170px;
-  margin-right: 1·0px;
+  margin-right: 10px;
   border: 1px solid #DDDDDD;
 }
 

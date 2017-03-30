@@ -1,14 +1,20 @@
 <template>
-<div class="inner sale">
-  <search-bar :todo="searchItems"></search-bar>
+<div class="inner" :class="{'sale':!details,'sale-details':details}">
+  <search-bar :todo="searchItems" v-if="!details"></search-bar>
+  <commodity-list :todo="commodityItems" v-if="!details"></commodity-list>
+  <router-view v-if="details"></router-view>
 </div>
 </template>
 
 <script>
-import searchBar from './search-bar'
+import Bus from '@/assets/eventBus'
+import searchBar from '../general/search-bar'
+import commodityList from '../general/commodity-list'
+import Router from '@/router'
 export default {
-  data: function() {
+  data() {
     return {
+      details: Router.app.$route.path.replace('/', '').split('/')[2] ? true : false,
       searchItems: [{
         type: 'text-box',
         name: 'name',
@@ -45,15 +51,169 @@ export default {
         }, {
           value: 'can'
         }]
-      }]
+      }],
+      commodityItems: {
+        display: [{
+          name: 'price',
+          title: '价格'
+        }, {
+          name: 'reserve',
+          title: '库存'
+        }, {
+          name: 'sales',
+          title: '总销量'
+        }, {
+          name: 'operation',
+          title: '操作'
+        }],
+        summary: '共有 1252 件商品正在出售',
+        button: [{
+          value: '下架',
+          support() {
+            console.log('ass')
+          }
+        }, {
+          value: '促销',
+          support() {
+            console.log('ass')
+          }
+        }, {
+          value: '取消促销',
+          support() {
+            console.log('ass')
+          }
+        }, {
+          value: '编辑',
+          support() {
+            console.log('ass')
+          }
+        }],
+        commodities: [{
+          id: 1,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked:false
+        }, {
+          id: 2,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked:false
+        }, {
+          id: 3,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked:false
+        }, {
+          id: 4,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked:false
+        }, {
+          id: 5,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked:false
+        }, {
+          id: 6,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked: false
+        }, {
+          id: 7,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked : false
+        }, {
+          id: 8,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked: false
+        }, {
+          id: 9,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked: false
+        }, {
+          id: 10,
+          name: 'Astick爱时乐 香草牛奶味威化卷心酥（注心威化饼干）330g/罐 印度尼西亚进口',
+          img: '/static/images/doge.jpg',
+          price: '17.9元',
+          reserve: '156',
+          sales: '2512单',
+          display: '',
+          checked: false
+        }],
+        allChecked:false
+      }
     }
   },
   components: {
-    searchBar
+    searchBar,
+    commodityList
+  },
+  watch: {
+    '$route' (to, from) {
+      this.details = Router.app.$route.path.replace('/', '').split('/')[2] ? true : false;
+    }
+  },
+  beforeMount() {
+    var display = this.commodityItems.display;
+    var commodities = this.commodityItems.commodities;
+    for (var i in commodities) {
+      commodities[i].display = function() {
+        return display;
+      }
+    }
+  },
+  mounted(){
+    var self = this.commodityItems;
+    Bus.$on('allChecked',function(c){
+      self.allChecked = c.checked
+    })
   }
 }
 </script>
 
 <style scoped>
-
+.sale-details {
+  min-height: 800px;
+  border: 1px solid #DDDDDD;
+  padding: 15px 20px;
+}
 </style>

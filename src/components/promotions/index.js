@@ -1,4 +1,4 @@
-﻿import inner from './inner'
+import inner from './inner'
 import today from './today'
 import discounts from './discounts'
 import fresh from './fresh'

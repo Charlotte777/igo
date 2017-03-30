@@ -15,7 +15,7 @@
 <script>
 import shippedList from '@/components/delivery/shipped-list'
 export default{
-    data : function() {
+    data() {
             return{
                 list:[{
                     orderNumber : '2016122900001 ',

@@ -32,8 +32,9 @@
 import textBox from '../general/text-box'
 import chooseBox from '../general/choose-box'
 import submitButton from '../general/submit-button'
+import checkbox from '../general/checkbox'
 export default {
-  data: function() {
+  data() {
     return {
       items: [{
         width: 250,
@@ -92,7 +93,7 @@ export default {
       }],
       button: {
         value: '提交',
-        submit: function() {
+        submit() {
           console.log('ass')
         }
       }

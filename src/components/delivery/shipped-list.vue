@@ -35,7 +35,7 @@
 export default {
   props: ['todo'],
   methods:{
-      check:function(){
+      check(){
         console.log(this.checked)
       }
   }

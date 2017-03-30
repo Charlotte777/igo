@@ -7,7 +7,7 @@
         </div>
         <div class="delivery-box-button">
             <div class="d-checkbox">
-              <input id="select-all" type="checkbox" :checked="allChecked" @click="check"/><label>全选</label>
+              <input type="checkbox" :checked="allChecked" @click="check"/><label>全选</label>
             </div>
           <button class="d-sent">批量发货</button>
           <button class="d-invoices">批量打印发货单</button>
@@ -24,7 +24,7 @@
 import awaitList from '@/components/delivery/await-list'
 import Bus from '@/assets/eventBus'
 export default{
-    data : function() {
+    data() {
             return{
                 list:[{
                     orderNumber : '2016122900001 ',
@@ -86,7 +86,7 @@ export default{
         awaitList
     },
     methods:{
-        check : function(){
+        check(){
             this.allChecked = !this.allChecked;
             var checked = this.allChecked;
             var list = this.list;

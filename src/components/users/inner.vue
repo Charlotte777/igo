@@ -9,41 +9,62 @@
       </div>
       <div class="account-box-button">
           <div class="a-checkbox">
-              <input id="select-all" type="checkbox" /><label>全选</label>
+              <input type="checkbox" :checked='allChecked' @click="check()" /><label>全选</label>
           </div>
           <button class="disabled">停用</button>
           <button class="enabled">取消停用</button>
           <button class="delete">删除</button>
       </div>
       <div class="account-box-content">
-         <row v-for="row in list" :todo="row" :key="row.name"></row>
+         <list v-for="item in list" :todo="item,list,allChecked" :key="item.name"></list>
       </div>
   </div>
 </div>
 </template>
 
 <script>
-import row from '@/components/users/row'
+import Bus from '@/assets/eventBus'
+import list from '@/components/users/list'
 export default{
-    data: function(){
+    data(){
         return{
             list:[{
                 name: 'Ben',
                 IP: '10.31.26.174',
-                datetime: '2016-1-3 13：51：23'
+                datetime: '2016-1-3 13：51：23',
+                checked:false
             },{
                 name: 'Ben',
                 IP: '10.31.26.174',
-                datetime: '2016-1-3 13：51：23'
+                datetime: '2016-1-3 13：51：23',
+                checked:false
             },{
                 name: 'Ben',
                 IP: '10.31.26.174',
-                datetime: '2016-1-3 13：51：23'
-            }]
+                datetime: '2016-1-3 13：51：23',
+                checked:false
+            }],
+            allChecked:false
         }
     },
     components: {
-        row
+        list
+    },
+    methods: {
+        check(){
+            this.allChecked = !this.allChecked;
+            var checked = this.allChecked;
+            var list= this.list
+            for(var i in list){
+                list[i].checked = checked;
+            }
+        }
+    },
+    mounted(){
+        var self = this;
+         Bus.$on("allChecked",function(c){
+            self.allChecked = c.checked;
+        });
     }
 }
 

@@ -52,6 +52,10 @@ export default {
   display: none;
 }
 
+.main {
+  color: #656565;
+}
+
 header.header {
   width: 100%;
   padding: 15px 30px;
@@ -118,15 +122,15 @@ header.header .panel .quit {
   margin: 10px;
   font-size: 14px;
   color: #656565;
+  align-items: flex-start;
 }
 
 .container .content {
-  margin-left: 10px;
   flex-grow: 1;
 }
 
 .container .content .position {
-  padding: 15px 25px;
+  padding: 15px 20px;
   border: 1px solid #DDDDDD;
 }
 

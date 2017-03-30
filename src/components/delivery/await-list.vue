@@ -37,7 +37,7 @@ import Bus from '@/assets/eventBus'
 export default {
   props: ['todo','list','allChecked'],
   methods:{
-      check:function(t,l,c){
+      check(t,l,c){
          t.checked = !t.checked;
          if(t.checked == false){
              Bus.$emit("allChecked",{

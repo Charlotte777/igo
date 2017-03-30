@@ -5,6 +5,8 @@ import Commodity from '@/components/commodity'
 import Users from '@/components/users'
 import Delivery from '@/components/delivery'
 import Promotions from '@/components/promotions'
+import Aftersale from '@/components/aftersale'
+import Order from '@/components/order'
 
 Vue.use(Router)
 const router = new Router({
@@ -22,13 +24,21 @@ const router = new Router({
       component: Commodity.add
     }, {
       path: 'sale',
-      component: Commodity.sale
+      component: Commodity.sale.inner,
+      children: [{
+        path: ':twig',
+        component: Commodity.sale.details
+      }]
     }, {
       path: 'sort',
       component: Commodity.sort
     }, {
       path: 'appraise',
-      component: Commodity.appraise
+      component: Commodity.appraise.inner,
+      children: [{
+        path: ':twig',
+        component: Commodity.appraise.details
+      }]
     }, {
       path: 'recycle',
       component: Commodity.recycle
@@ -37,6 +47,10 @@ const router = new Router({
     path: '/users',
     name: 'users',
     component: Users
+  },{
+    path: '/aftersale',
+    name: 'aftersale',
+    component: Aftersale
   },{
     path:'/delivery',
     name: 'delivery',
@@ -65,6 +79,10 @@ const router = new Router({
       path: 'oneyuan',
       component:Promotions.oneyuan
     }]
+  },{
+    path: '/order',
+    name: 'order',
+    component: Order
   }]
 });
 
