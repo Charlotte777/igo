@@ -5,6 +5,17 @@
     <div class="panel">
       <div class="datetime">{{ datetime }}</div>
       <div class="inner">你好！ {{ username }}</div>
+      <div class="dropdown" :class="{'isOpen':isOpen}" >
+          <span class="icon arrow" @click='dropdown'></span>
+          <ul v-if='isOpen'>
+            <li>
+              <span class="icon">&#xe638;</span><span>消息</span>
+            </li>
+            <li>
+              <span class="icon">&#xe694;</span><span>个人中心</span>
+            </li>
+          </ul>
+      </div>
       <div class="user-avatar">
         <img :src="src" />
       </div>
@@ -24,22 +35,35 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Bus from '@/assets/eventBus'
 import menuList from '@/components/index/menu-list'
 export default {
-  data: function() {
+  data() {
     return {
       username: '用户',
       datetime: '1997年12月30日 19:58:11',
       src: '/static/images/doge.jpg',
+      isOpen: false,
       position: ''
     }
   },
   components: {
     menuList
   },
+  methods:{
+    dropdown(){
+      this.isOpen = !this.isOpen;
+    }
+  },
   mounted() {
-    var self = this;
+    let self = this;
+    // axios.post('http://10.3.13.168:3331/api/system/SelectuserID',{
+    //   id:'c25a934a-2e00-4ca6-a097-e2bdf26802f1'
+    // }).then(function(res){
+    //   let r = res.data.dataResultObj[0];
+    //   self.username = r.name;
+    // });
     Bus.$on("changePosition", function(obj) {
       self.position = obj.position;
     });
@@ -88,14 +112,6 @@ header.header .panel .inner {
   margin-right: 30px;
 }
 
-header.header .panel .inner:after {
-  content: '';
-  margin-top: 6px;
-  margin-left: 8px;
-  border: 6px solid transparent;
-  border-top: 7px solid #FFFFFF;
-  position: absolute;
-}
 
 header.header .panel .user-avatar {
   width: 50px;
@@ -115,6 +131,13 @@ header.header .panel .quit {
   font-size: 22px;
   line-height: 18px;
   float: right;
+}
+
+header.header .panel .dropdown .icon {
+  font-size: 20px;
+  font-family: IconFont;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .container {
@@ -145,5 +168,26 @@ header.header .panel .quit {
 
 .container .content .inner {
   margin-top: 10px;
+}
+header.header .panel .dropdown{
+  position:relative;
+}
+header.header .panel .dropdown .icon.arrow:before{
+  content:'\e602'
+}
+header.header .panel .dropdown.isOpen .icon.arrow:before{
+  content:'\e502'
+}
+header.header .panel .dropdown ul{
+    background: #f1675f none repeat scroll 0 0;
+    margin: 5px 0 0 -115px;
+    padding: 10px 10px 5px;
+    position: absolute;
+    text-align: left;
+    width: 135px;
+}
+header.header .panel .dropdown ul li{
+  margin:5px 0;
+  cursor:pointer
 }
 </style>

@@ -67,6 +67,9 @@ const group = {
   'users': {
     name: '用户管理',
     twigs: '用户详情'
+  },
+  'personal': {
+    name: '个人中心'
   }
 };
 

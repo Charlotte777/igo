@@ -1,7 +1,7 @@
 <template>
 <div class="text-box">
   <label>{{ todo.title }}：</label>
-  <input type="text" :style="{ width: todo.width + 'px' }" :name="todo.name" :value="todo.value" />
+  <input type="text" :style="{ width: todo.width + 'px' }" :name="todo.name" :value="todo.value"  />
 </div>
 </template>
 
@@ -34,4 +34,4 @@ export default {
 .text-box:last-child {
   margin-bottom: 0;
 }
-</style>﻿
+</style>

@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Tue Mar 14 16:12:39 2017
+Created by FontForge 20120731 at Fri Mar 31 14:14:50 2017
  By admin
 </metadata>
 <defs>
@@ -69,5 +69,9 @@ d="M881 115l-127 -125l-126 125l-4 -4l-4 4l-184 -182l62 -61l126 125l127 -125l3 4l
 t126 125t174.5 46q96 0 177 -48t126 -129v0zM299 595q0 89 63.5 152t153.5 63t153.5 -63t63.5 -152t-63.5 -152t-153.5 -63t-153.5 63t-63.5 152v0z" />
     <glyph glyph-name="zuanshi" unicode="&#xe61d;" horiz-adv-x="1025" 
 d="M513 -103l-511 583l201 385h621l201 -385zM106 492l407 -464l408 464l-150 286h-515zM513 153l-302 334l65 58l237 -263l238 263l64 -58z" />
+    <glyph glyph-name="sanjiao" unicode="&#xe602;" 
+d="M750 439l-238 -238l-238 238h476z" />
+    <glyph glyph-name="sanjiao1" unicode="&#xe502;" 
+d="M274 329l238 238l238 -238h-476z" />
   </font>
 </defs></svg>

@@ -7,6 +7,7 @@ import Delivery from '@/components/delivery'
 import Promotions from '@/components/promotions'
 import Aftersale from '@/components/aftersale'
 import Order from '@/components/order'
+import Personal from '@/components/personal'
 
 Vue.use(Router)
 const router = new Router({
@@ -83,6 +84,10 @@ const router = new Router({
     path: '/order',
     name: 'order',
     component: Order
+  },{
+    path: '/personal',
+    name: 'personal',
+    component: Personal
   }]
 });
 
